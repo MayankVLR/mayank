@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 type DriveVideoPlayerProps = {
   driveId?: string;
@@ -17,11 +17,22 @@ export default function DriveVideoPlayer({
   poster,
   className = "",
 }: DriveVideoPlayerProps) {
+  const playerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const playRequestedRef = useRef(false);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isFullscreen, setIsFullscreen] = useState(false);
   const [playbackError, setPlaybackError] = useState("");
   const videoSrc = src || (driveId ? `/api/videos/${encodeURIComponent(driveId)}` : undefined);
+
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      setIsFullscreen(document.fullscreenElement === playerRef.current);
+    };
+
+    document.addEventListener("fullscreenchange", handleFullscreenChange);
+    return () => document.removeEventListener("fullscreenchange", handleFullscreenChange);
+  }, []);
 
   const togglePlayback = () => {
     const video = videoRef.current;
@@ -51,8 +62,25 @@ export default function DriveVideoPlayer({
     }
   };
 
+  const toggleFullscreen = async () => {
+    const player = playerRef.current;
+    if (!player) return;
+
+    setPlaybackError("");
+    try {
+      if (document.fullscreenElement === player) {
+        await document.exitFullscreen();
+      } else {
+        await player.requestFullscreen();
+      }
+    } catch (error) {
+      console.error("Fullscreen request failed", error);
+      setPlaybackError("Fullscreen isn't available in this browser.");
+    }
+  };
+
   return (
-    <div className={`group relative h-full w-full overflow-hidden bg-black ${className}`}>
+    <div ref={playerRef} className={`group relative h-full w-full overflow-hidden bg-black ${className}`}>
       {videoSrc ? (
         <>
           <video
@@ -102,6 +130,23 @@ export default function DriveVideoPlayer({
                 </svg>
               )}
             </span>
+          </button>
+          <button
+            type="button"
+            onClick={toggleFullscreen}
+            aria-label={isFullscreen ? "Exit fullscreen" : `View ${title} fullscreen`}
+            aria-pressed={isFullscreen}
+            className="absolute bottom-3 right-3 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-black/65 text-white backdrop-blur-sm transition-colors hover:bg-black/85 focus-visible:outline focus-visible:outline-2 focus-visible:outline-white"
+          >
+            {isFullscreen ? (
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="h-5 w-5 fill-none stroke-current stroke-2">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M8 3v5H3m18 0h-5V3M3 16h5v5m8 0v-5h5" />
+              </svg>
+            ) : (
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="h-5 w-5 fill-none stroke-current stroke-2">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M3 8V3h5m8 0h5v5M3 16v5h5m8 0h5v-5" />
+              </svg>
+            )}
           </button>
           {playbackError && (
             <p role="status" className="absolute inset-x-0 bottom-3 bg-black/75 px-3 py-2 text-center text-sm text-white">

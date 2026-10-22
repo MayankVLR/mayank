@@ -34,7 +34,7 @@ export default function Hero() {
             initial={reduceMotion ? false : { opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.59, ease: [0.2, 0.7, 0.2, 1] }}
-            className="relative overflow-hidden rounded-[30px] shadow-[0_30px_60px_rgba(21,22,27,0.18)]"
+            className="relative mx-auto w-full max-w-[1040px] overflow-hidden rounded-[30px] shadow-[0_30px_60px_rgba(21,22,27,0.18)]"
             style={{
               ...(reduceMotion ? {} : { y: cardY }),
             }}
