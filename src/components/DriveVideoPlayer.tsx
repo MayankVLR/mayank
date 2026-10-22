@@ -31,7 +31,12 @@ export default function DriveVideoPlayer({
     if ((video.paused && !playRequestedRef.current) || video.ended) {
       playRequestedRef.current = true;
       video.play().catch((error: unknown) => {
-        if (error instanceof Error && error.name === "AbortError") {
+        if (
+          typeof error === "object" &&
+          error !== null &&
+          "name" in error &&
+          error.name === "AbortError"
+        ) {
           return;
         }
 
