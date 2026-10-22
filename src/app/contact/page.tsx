@@ -73,34 +73,25 @@ export default function ContactPage() {
                 </div>
                 <div className="flex flex-col gap-2">
                   <a
-                    href="https://www.instagram.com/mayankfilmz/"
+                    href="https://www.instagram.com/mayank_why_/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center justify-between rounded-full bg-[rgba(255,255,255,0.05)] border border-[rgba(255,255,255,0.07)] hover:bg-[rgba(255,255,255,0.1)] px-5 py-3 font-semibold text-[13.5px] transition-all hover:-translate-y-0.5"
                   >
                     <span>Instagram</span>
-                    <span className="text-xs text-[#8b897e] font-normal">@mayankfilmz ↗</span>
+                    <span className="text-xs text-[#8b897e] font-normal">@mayank_why_ ↗</span>
                   </a>
                   <a
-                    href="https://x.com/mayankfilmz"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center justify-between rounded-full bg-[rgba(255,255,255,0.05)] border border-[rgba(255,255,255,0.07)] hover:bg-[rgba(255,255,255,0.1)] px-5 py-3 font-semibold text-[13.5px] transition-all hover:-translate-y-0.5"
-                  >
-                    <span>X (Twitter)</span>
-                    <span className="text-xs text-[#8b897e] font-normal">@mayankfilmz ↗</span>
-                  </a>
-                  <a
-                    href="https://youtube.com/"
+                    href="https://www.youtube.com/@mayank-why"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center justify-between rounded-full bg-[rgba(255,255,255,0.05)] border border-[rgba(255,255,255,0.07)] hover:bg-[rgba(255,255,255,0.1)] px-5 py-3 font-semibold text-[13.5px] transition-all hover:-translate-y-0.5"
                   >
                     <span>YouTube</span>
-                    <span className="text-xs text-[#8b897e] font-normal">Mayank Films ↗</span>
+                    <span className="text-xs text-[#8b897e] font-normal">@mayank-why ↗</span>
                   </a>
                   <a
-                    href="https://behance.net/"
+                    href="https://www.behance.net/mayankjagtap1"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center justify-between rounded-full bg-[rgba(255,255,255,0.05)] border border-[rgba(255,255,255,0.07)] hover:bg-[rgba(255,255,255,0.1)] px-5 py-3 font-semibold text-[13.5px] transition-all hover:-translate-y-0.5"
@@ -132,6 +123,4 @@ export default function ContactPage() {
     </>
   );
 }
-
-
 

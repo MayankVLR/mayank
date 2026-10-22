@@ -54,12 +54,28 @@ export default function Footer() {
           <span>© 2026 Designed by Mayank</span>
           <div className="flex gap-[22px]">
             <a
-              href="https://www.instagram.com/mayankfilmz/"
+              href="https://www.instagram.com/mayank_why_/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-[#b9b7ac] transition-colors hover:text-white"
             >
               Instagram
+            </a>
+            <a
+              href="https://www.behance.net/mayankjagtap1"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#b9b7ac] transition-colors hover:text-white"
+            >
+              Behance
+            </a>
+            <a
+              href="https://www.youtube.com/@mayank-why"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#b9b7ac] transition-colors hover:text-white"
+            >
+              YouTube
             </a>
             <a
               href="https://www.linkedin.com/in/mayank-jagtap/"
@@ -92,4 +108,3 @@ export default function Footer() {
     </footer>
   );
 }
-
