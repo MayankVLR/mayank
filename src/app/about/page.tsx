@@ -123,7 +123,7 @@ export default function AboutPage() {
                   / TIMELINE
                 </div>
                 <p className="mt-3.5 max-w-[340px] text-[14.5px] text-[var(--ink-soft)]">
-                  From internship to freelance projects each one shaped how I approach
+                  From early roles to freelance projects, each one shaped how I approach
                   motion and story today.
                 </p>
               </div>
@@ -168,6 +168,5 @@ export default function AboutPage() {
     </>
   );
 }
-
 
 

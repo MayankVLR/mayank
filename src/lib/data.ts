@@ -162,7 +162,7 @@ export const facts = [
 export const experience = [
   {
     id: "zepto",
-    label: "ZEPTO — INTERNSHIP",
+    label: "ZEPTO — FULL-TIME",
     title: "Motion Designer",
     desc: "Worked on performance marketing ads and fun event campaigns Mango Paglu Party, Bengali New Year banners, April Fools' campaigns, and more.",
     current: true,
@@ -185,12 +185,12 @@ export const collaborations = [
   {
     text: "Worked on the Father's Day animated film as part of the Zepto × Google collaboration.",
     name: "Zepto x Google",
-    role: "Internship: Motion Designer",
+    role: "Full-time: Motion Designer",
   },
   {
     text: "Created the Bengali New Year billboard campaign for GO DESi, marking my first billboard project.",
     name: "Zepto x GO Desi",
-    role: "Internship: Motion Designer",
+    role: "Full-time: Motion Designer",
   },
   {
     text: "Advertising content and social campaigns for a nationally recognised D2C brand  Boba Bhai.",
