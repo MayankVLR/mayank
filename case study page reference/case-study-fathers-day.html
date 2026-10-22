@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Ordinary Superhero — A Father's Day Film — Case Study</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bg: #EEEDE5;
+    --bg-soft: #E6E4D9;
+    --ink: #15161B;
+    --ink-soft: #4B4A45;
+    --muted: #8A887E;
+    --accent: #FF4B2E;
+    --accent-deep: #C7391F;
+    --line: rgba(21,22,27,0.12);
+    --dark: #15161B;
+    --dark-line: rgba(255,255,255,0.12);
+    --paper-card: #F6F5EF;
+
+    --display: 'Space Grotesk', sans-serif;
+    --body: 'Inter', sans-serif;
+    --mono: 'IBM Plex Mono', monospace;
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  html{ background: var(--bg); }
+  body{
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 16px;
+    line-height: 1.5;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+  img{ display:block; max-width:100%; }
+  a{ color: inherit; text-decoration:none; }
+  ::selection{ background: var(--accent); color: #fff; }
+
+  .wrap{ max-width: 1100px; margin: 0 auto; padding: 0 40px; }
+
+  .eyebrow{
+    font-family: var(--mono);
+    font-size: 12.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .eyebrow::before{
+    content:'';
+    width:6px; height:6px;
+    border-radius: 50%;
+    background: var(--accent);
+    display:inline-block;
+    flex:none;
+  }
+
+  h1,h2,h3{ font-family: var(--display); font-weight:600; letter-spacing:-0.01em; }
+
+  /* ---------------- NAV ---------------- */
+  .nav{ position: fixed; top: 20px; left:0; right:0; z-index: 100; display:flex; justify-content:center; }
+  .nav-inner{
+    display:flex; align-items:center; gap: 26px;
+    background: rgba(238,237,229,0.7);
+    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    border: 1px solid var(--line);
+    border-radius: 100px;
+    padding: 10px 12px 10px 22px;
+    box-shadow: 0 8px 30px rgba(21,22,27,0.06);
+  }
+  .nav-logo{ font-family: var(--mono); font-weight:500; font-size:14px; letter-spacing: 0.02em; white-space:nowrap; }
+  .nav-back{
+    font-size: 13.5px; color: var(--ink-soft); display:flex; align-items:center; gap:6px;
+  }
+  .nav-back:hover{ color: var(--ink); }
+  .nav-cta{
+    font-family: var(--body); font-size: 13.5px; font-weight:600;
+    background: var(--ink); color: var(--bg);
+    padding: 10px 18px; border-radius: 100px; white-space: nowrap;
+    transition: background .3s ease, transform .3s ease;
+  }
+  .nav-cta:hover{ background: var(--accent); transform: translateY(-1px); }
+
+  /* ---------------- HERO ---------------- */
+  .hero{ padding: 170px 0 60px; }
+  .hero-title{
+    font-size: clamp(36px, 5.2vw, 66px);
+    line-height: 1.05;
+    max-width: 900px;
+    margin: 20px 0 24px;
+  }
+  .hero-sub{ max-width: 620px; color: var(--ink-soft); font-size: 17px; margin-bottom: 34px; }
+
+  .meta-tags{ display:flex; gap:10px; flex-wrap:wrap; margin-bottom: 46px; }
+  .meta-tag{
+    font-family: var(--mono); font-size: 11.5px; letter-spacing:0.06em; text-transform:uppercase;
+    color: var(--ink-soft); border: 1px solid var(--line); border-radius: 100px; padding: 7px 14px;
+  }
+
+  .hero-facts{
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .hero-fact{ padding: 22px 0; border-right: 1px solid var(--line); padding-right:20px; }
+  .hero-fact:last-child{ border-right:none; }
+  .hero-fact-label{ font-family: var(--mono); font-size: 11px; color: var(--muted); text-transform:uppercase; letter-spacing:0.06em; }
+  .hero-fact-value{ font-size: 15px; font-weight:600; margin-top:8px; }
+
+  @media (max-width: 760px){
+    .hero-facts{ grid-template-columns: repeat(2, 1fr); }
+    .hero-fact{ border-bottom: 1px solid var(--line); }
+    .hero-fact:nth-child(2){ border-right:none; }
+  }
+
+  /* ---------------- SECTION SHELL ---------------- */
+  section{ position: relative; padding: 90px 0; }
+  .section-head{ margin-bottom: 44px; }
+  .section-title{ font-size: clamp(26px, 3.4vw, 38px); margin-top: 12px; max-width: 640px; }
+
+  .js-ready .reveal{ opacity:0; transform: translateY(28px); }
+
+  /* ---------------- VIDEO SLOT ---------------- */
+  .video-slot{
+    aspect-ratio: 16/9;
+    border-radius: 22px;
+    border: 1.5px dashed rgba(21,22,27,0.22);
+    background: var(--paper-card);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap: 16px;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+  }
+  .video-slot-icon{
+    width:64px; height:64px; border-radius:50%;
+    background: var(--ink); color:var(--bg);
+    display:flex; align-items:center; justify-content:center;
+    font-size: 22px;
+  }
+  .video-slot-label{ font-family:var(--mono); font-size:12.5px; letter-spacing:0.1em; text-transform:uppercase; color: var(--ink-soft); }
+  .video-slot-sub{ font-size: 14px; color: var(--muted); max-width:340px; }
+
+  /* ---------------- BRIEF/APPROACH/RESULT ---------------- */
+  .info-row{ display:flex; gap:22px; padding: 26px 0; border-top: 1px solid var(--line); }
+  .info-row:last-child{ border-bottom: 1px solid var(--line); }
+  .info-label{
+    font-family: var(--mono); font-size: 12px; color: var(--accent);
+    letter-spacing:0.06em; text-transform:uppercase; width: 120px; flex:none; padding-top:2px;
+  }
+  .info-text{ color: var(--ink-soft); font-size: 15px; max-width: 620px; }
+
+  /* ---------------- TIMELINE ---------------- */
+  .timeline{ display:flex; flex-direction:column; }
+  .timeline-step{
+    display:grid; grid-template-columns: 90px 1fr; gap: 24px;
+    padding: 30px 0; border-top: 1px solid var(--line);
+  }
+  .timeline-step:last-child{ border-bottom: 1px solid var(--line); }
+  .timeline-day{ font-family: var(--mono); color: var(--accent); font-size:13px; }
+  .timeline-title{ font-size: 19px; margin-bottom: 8px; }
+  .timeline-desc{ color: var(--ink-soft); font-size: 14.5px; max-width: 560px; }
+  @media (max-width:640px){ .timeline-step{ grid-template-columns: 1fr; gap:6px; } }
+
+  /* ---------------- GALLERY ---------------- */
+  .gallery-block{ margin-bottom: 54px; }
+  .gallery-frame{
+    border-radius: 20px;
+    overflow:hidden;
+    border: 1px solid var(--line);
+    box-shadow: 0 20px 45px rgba(21,22,27,0.10);
+  }
+  .gallery-caption{
+    display:flex; justify-content:space-between; align-items:baseline;
+    margin-top: 16px; gap: 20px; flex-wrap:wrap;
+  }
+  .gallery-caption-title{ font-size: 16px; font-weight:600; }
+  .gallery-caption-note{ font-size: 13.5px; color: var(--muted); max-width: 420px; text-align:right; }
+  @media (max-width:640px){ .gallery-caption-note{ text-align:left; } }
+
+  /* ---------------- CREDITS ---------------- */
+  .credit-grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  .credit-card{
+    background: var(--paper-card); border:1px solid var(--line); border-radius: 16px; padding: 24px;
+  }
+  .credit-role{ font-family: var(--mono); font-size:11.5px; color: var(--muted); text-transform:uppercase; letter-spacing:0.06em; }
+  .credit-name{ font-size: 18px; margin-top: 8px; }
+  @media (max-width:760px){ .credit-grid{ grid-template-columns: 1fr; } }
+
+  /* ---------------- LINKS ---------------- */
+  .btn{
+    font-family: var(--body); font-weight:600; font-size: 14.5px;
+    padding: 15px 26px; border-radius: 100px; display:inline-flex; align-items:center; gap:8px;
+    transition: transform .3s cubic-bezier(.2,.7,.2,1), background .3s ease, color .3s ease;
+  }
+  .btn-solid{ background: var(--ink); color: var(--bg); }
+  .btn-solid:hover{ background: var(--accent); transform: translateY(-2px); }
+  .btn-line{ border: 1px solid var(--line); color: var(--ink); }
+  .btn-line:hover{ border-color: var(--ink); transform: translateY(-2px); }
+  .link-actions{ display:flex; gap:14px; flex-wrap:wrap; }
+
+  /* ---------------- FOOTER ---------------- */
+  .footer{ background: var(--dark); color: #EDEBE3; padding: 90px 0 40px; margin-top: 40px; }
+  .footer-head{ font-size: clamp(28px, 4.5vw, 44px); max-width: 620px; }
+  .footer-sub{ color:#9C9A8E; margin-top:16px; max-width:440px; font-size:15px; }
+  .footer-actions{ margin-top: 32px; display:flex; gap:14px; flex-wrap:wrap; }
+  .footer-actions .btn-solid{ background: var(--accent); color:#fff; }
+  .footer-actions .btn-solid:hover{ background:#fff; color: var(--dark); }
+  .footer-actions .btn-line{ border-color: var(--dark-line); color:#EDEBE3; }
+  .footer-actions .btn-line:hover{ border-color:#fff; }
+  .footer-bottom{
+    margin-top: 60px; padding-top: 22px; border-top: 1px solid var(--dark-line);
+    font-size: 13px; color: #8B897E;
+  }
+
+  ::-webkit-scrollbar{ width:0; height:0; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-back">← Back to work</a>
+    <span class="nav-logo">CASE STUDY</span>
+    <a href="#credits" class="nav-cta">Credits ↓</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow reveal">CASE STUDY — PERSONAL / PASSION PROJECT</div>
+    <h1 class="hero-title reveal">The Ordinary Superhero — an AI-animated Father's Day film</h1>
+    <p class="hero-sub reveal">A short anime-style tribute film imagining a quiet, everyday
+      father as a secret superhero — built almost entirely with generative AI video and
+      image tools in just two and a half days.</p>
+
+    <div class="meta-tags reveal">
+      <span class="meta-tag">Google Gemini</span>
+      <span class="meta-tag">Veo 3</span>
+      <span class="meta-tag">Nano Banana</span>
+      <span class="meta-tag">JJK-inspired Anime Style</span>
+      <span class="meta-tag">AI Filmmaking</span>
+    </div>
+
+    <div class="hero-facts reveal">
+      <div class="hero-fact">
+        <div class="hero-fact-label">Timeline</div>
+        <div class="hero-fact-value">~2.5 days</div>
+      </div>
+      <div class="hero-fact">
+        <div class="hero-fact-label">Made with</div>
+        <div class="hero-fact-value">Gemini · Veo 3 · Nano Banana</div>
+      </div>
+      <div class="hero-fact">
+        <div class="hero-fact-label">Co-created with</div>
+        <div class="hero-fact-value">Tharun</div>
+      </div>
+      <div class="hero-fact">
+        <div class="hero-fact-label">Voiceover script</div>
+        <div class="hero-fact-value">Rohan & Niraj</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- VIDEO -->
+<section id="video">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">WATCH</div>
+      <h2 class="section-title">First draft</h2>
+    </div>
+    <div class="video-slot reveal">
+      <div class="video-slot-icon">▶</div>
+      <div class="video-slot-label">1ST DRAFT — DROP VIDEO HERE</div>
+      <p class="video-slot-sub">Reserved space for the first-draft cut of the film.
+        Replace this block with a &lt;video&gt; tag or embed once the file is ready.</p>
+    </div>
+  </div>
+</section>
+
+<!-- OVERVIEW -->
+<section id="overview">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">OVERVIEW</div>
+      <h2 class="section-title">What the film is about</h2>
+    </div>
+
+    <div class="info-row reveal">
+      <span class="info-label">Brief</span>
+      <span class="info-text">Make a Father's Day film that says something most ads don't
+        bother to: that the most ordinary-looking dads are quietly the most heroic people
+        we know — someone worth animating like an anime superhero.</span>
+    </div>
+    <div class="info-row reveal">
+      <span class="info-label">Approach</span>
+      <span class="info-text">Landed on a Jujutsu Kaisen–inspired anime style after testing
+        several looks, then generated every frame ourselves — pushing angle, lighting, and
+        expression until an ordinary father in a cape actually felt cinematic.</span>
+    </div>
+    <div class="info-row reveal">
+      <span class="info-label">Result</span>
+      <span class="info-text">A fully AI-generated short film — storm-lit superhero reveal,
+        quiet study-desk scenes, and warm daily-life moments like grocery runs and cooking —
+        completed and posted in under three days.</span>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">PROCESS</div>
+      <h2 class="section-title">How it came together, day by day.</h2>
+    </div>
+
+    <div class="timeline">
+      <div class="timeline-step reveal">
+        <span class="timeline-day">STEP 01</span>
+        <div>
+          <h3 class="timeline-title">Finding the style</h3>
+          <p class="timeline-desc">Tried several visual directions before landing on a
+            JJK-style anime look — the right balance of dramatic and warm for a father-as-superhero story.</p>
+        </div>
+      </div>
+      <div class="timeline-step reveal">
+        <span class="timeline-day">STEP 02</span>
+        <div>
+          <h3 class="timeline-title">Locking character consistency</h3>
+          <p class="timeline-desc">Generated dozens of angle, lighting, and expression
+            variations of the same character with Nano Banana to keep him recognisable
+            across every single shot.</p>
+        </div>
+      </div>
+      <div class="timeline-step reveal">
+        <span class="timeline-day">STEP 03</span>
+        <div>
+          <h3 class="timeline-title">Building the shot sets</h3>
+          <p class="timeline-desc">Organised the film into four sets — the storm-lit
+            reveal, the study desk, the sunrise bicycle ride, and the quiet home
+            scenes — and generated each as its own visual arc.</p>
+        </div>
+      </div>
+      <div class="timeline-step reveal">
+        <span class="timeline-day">STEP 04</span>
+        <div>
+          <h3 class="timeline-title">Motion with Veo 3</h3>
+          <p class="timeline-desc">Brought the still frames to life scene by scene,
+            iterating on motion and timing until the pacing felt right.</p>
+        </div>
+      </div>
+      <div class="timeline-step reveal">
+        <span class="timeline-day">STEP 05</span>
+        <div>
+          <h3 class="timeline-title">Voice &amp; final cut</h3>
+          <p class="timeline-desc">Script and voiceover written by Rohan and Niraj, laid
+            over the final edit before posting to Instagram and LinkedIn.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">BEHIND THE FRAMES</div>
+      <h2 class="section-title">Shot sets & character consistency.</h2>
+    </div>
+
+    <div class="gallery-block reveal">
+      <div class="gallery-frame">
+        <img src="storyboard-sets.png" alt="Four shot sets from the film: the storm reveal, the study desk, the sunrise bicycle ride, and the home scenes">
+      </div>
+      <div class="gallery-caption">
+        <span class="gallery-caption-title">Sets 1–4 — the full shot breakdown</span>
+        <span class="gallery-caption-note">From the dramatic mountaintop reveal to
+          grocery runs and cooking at home — the film's four visual chapters.</span>
+      </div>
+    </div>
+
+    <div class="gallery-block reveal">
+      <div class="gallery-frame">
+        <img src="style-sheet.png" alt="Character consistency sheet showing many angles, expressions, and lighting variations of the same character">
+      </div>
+      <div class="gallery-caption">
+        <span class="gallery-caption-title">Character consistency pass</span>
+        <span class="gallery-caption-note">Dozens of expression, angle, and lighting
+          variations generated to keep the character consistent shot to shot.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CREDITS -->
+<section id="credits">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">CREDITS</div>
+      <h2 class="section-title">Made by.</h2>
+    </div>
+
+    <div class="credit-grid">
+      <div class="credit-card reveal">
+        <div class="credit-role">Direction & AI Generation</div>
+        <div class="credit-name">Mayank &amp; Tharun</div>
+      </div>
+      <div class="credit-card reveal">
+        <div class="credit-role">Script & Voiceover Copy</div>
+        <div class="credit-name">Rohan &amp; Niraj</div>
+      </div>
+      <div class="credit-card reveal">
+        <div class="credit-role">Tools</div>
+        <div class="credit-name">Gemini · Veo 3 · Nano Banana</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER / LINKS -->
+<footer class="footer" id="contact">
+  <div class="wrap">
+    <div class="eyebrow reveal" style="color:#9C9A8E;">SEE THE FULL POST</div>
+    <h2 class="footer-head reveal">Watch it live on Instagram and LinkedIn.</h2>
+    <p class="footer-sub reveal">The finished cut, reactions, and full credits are up
+      on both platforms.</p>
+    <div class="footer-actions reveal">
+      <a href="https://www.instagram.com/p/DZy-MQ4MHt_/" target="_blank" rel="noopener" class="btn btn-solid">View on Instagram ↗</a>
+      <a href="https://www.linkedin.com/feed/?highlightedUpdateUrn=urn%3Ali%3Aactivity%3A7474332786489880576&highlightedUpdateType=REACTED_TO_UPDATE_MENTIONING_YOU&origin=INAPP&showCommentBox=true" target="_blank" rel="noopener" class="btn btn-line">View on LinkedIn ↗</a>
+    </div>
+    <div class="footer-bottom">© 2026 — Case study for a personal Father's Day film project</div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
+
+<script>
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const gsapLoaded = typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined';
+
+  if (gsapLoaded && !reduceMotion) { document.documentElement.classList.add('js-ready'); }
+
+  let lenis;
+  if (!reduceMotion && window.Lenis && gsapLoaded) {
+    lenis = new Lenis({ duration: 1.1, easing: (t) => 1 - Math.pow(1 - t, 3), smoothWheel: true, syncTouch: true });
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add((time) => { lenis.raf(time * 1000); });
+    gsap.ticker.lagSmoothing(0);
+  }
+
+  if (gsapLoaded) {
+    gsap.registerPlugin(ScrollTrigger);
+
+    gsap.utils.toArray('.reveal').forEach((el) => {
+      gsap.fromTo(el,
+        { opacity: 0, y: 28 },
+        {
+          opacity: 1, y: 0, duration: 0.8, ease: 'power3.out',
+          scrollTrigger: { trigger: el, start: 'top 88%', toggleActions: 'play none none reverse' }
+        }
+      );
+    });
+
+    function cascade(selector, stagger = 0.1){
+      gsap.utils.toArray(selector).forEach((el, i) => {
+        gsap.fromTo(el,
+          { opacity: 0, y: 30 },
+          {
+            opacity: 1, y: 0, duration: 0.7, ease: 'power3.out',
+            delay: (i % 5) * stagger,
+            scrollTrigger: { trigger: el, start: 'top 90%', toggleActions: 'play none none reverse' }
+          }
+        );
+      });
+    }
+    cascade('.timeline-step', 0.08);
+    cascade('.credit-card', 0.1);
+  }
+</script>
+
+</body>
+</html>

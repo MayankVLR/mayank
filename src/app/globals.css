@@ -1,0 +1,102 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #0c0e14;
+  --bg-soft: #10131c;
+  --ink: #f0f0f3;
+  --ink-soft: #b7b6be;
+  --muted: #8b8b99;
+  --accent: #ff4b2e;
+  --accent-deep: #c7391f;
+  --line: rgba(255, 255, 255, 0.1);
+  --dark: #15161b;
+  --dark-line: rgba(255, 255, 255, 0.12);
+  --paper-card: #161920;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-bg-soft: var(--bg-soft);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-deep: var(--accent-deep);
+  --color-line: var(--line);
+  --color-dark: var(--dark);
+  --color-paper-card: var(--paper-card);
+  --font-display: var(--font-space-grotesk);
+  --font-body: var(--font-inter);
+  --font-mono: var(--font-ibm-plex-mono);
+}
+
+html {
+  background: var(--bg);
+  scroll-behavior: auto;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-inter), sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--accent);
+  color: #fff;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+@keyframes soundbar {
+  0%, 100% {
+    transform: scaleY(0.35);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+
+.animate-soundbar {
+  animation: soundbar 0.8s infinite ease-in-out;
+  transform-origin: bottom;
+}
+
+.paused {
+  animation-play-state: paused !important;
+}
+
+@keyframes marquee-right {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+.animate-marquee-right {
+  animation: marquee-right 25s linear infinite;
+}
+
+@keyframes loader-pulse {
+  0%, 100% { transform: scaleX(0.2); }
+  50% { transform: scaleX(1); }
+}
+
+.animate-\[pulse_1\.2s_ease-in-out_infinite\] {
+  animation: loader-pulse 1.2s ease-in-out infinite;
+}
