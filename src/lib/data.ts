@@ -40,7 +40,7 @@ export const projects = [
     title: "zepto work show reel",
     gradient: "linear-gradient(135deg,#2C2E36,#0E0F13)",
     caption: "Showcase of motion work created for Zepto campaigns.",
-    driveId: "1PRrUeDXpXRJOZAFAfWIt3qqgcnDgb2t5",
+    driveId: "1JqC7C4w_h_zQek6XWET67Xggtcte_dPW",
   },
   {
     slug: "cool-stuff-i-made",
